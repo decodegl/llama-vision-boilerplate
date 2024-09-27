@@ -18,11 +18,6 @@ class Llama3VisionAPI(ls.LitAPI):
         for output in outputs:
             yield {"role": "assistant", "content": self.model.decode_tokens(output)}
 
-
-from model import Llama3
-import litserve as ls
-
-
 class Llama3VisionAPI(ls.LitAPI):
     def setup(self, device):
         self.model = Llama3(device)
@@ -37,11 +32,11 @@ class Llama3VisionAPI(ls.LitAPI):
         for output in outputs:
             yield {"role": "assistant", "content": self.model.decode_tokens(output)}
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Start the LitServer.")
+    parser = argparse.ArgumentParser(description="Start the llama3 vision server")
     parser.add_argument("--port", type=int, default=10111, help="Port number to run the server on")
     args = parser.parse_args()
-
     api = Llama3VisionAPI()
     server = ls.LitServer(api, accelerator="auto", spec=ls.OpenAISpec())
     server.run(port=args.port)
