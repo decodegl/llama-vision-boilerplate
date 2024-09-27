@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "llamavision"
+package-mode = false
+version = "0.1.0"
+description = "LLamaVision test project"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+litserve = "^0.2.2"
+transformers = "^4.45.1"
+uvloop = "^0.20.0"
+pillow = "^10.4.0"
+torch = "^2.4.1"
+torchvision = "^0.19.1"
+torchaudio = "^2.4.1"
+accelerate = ">=0.26.0"
+python-dotenv = "^1.0.1"
+huggingface-hub = "^0.25.1"
+rich = "^13.8.1"
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.29.0"
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
