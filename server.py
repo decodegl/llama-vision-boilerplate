@@ -33,5 +33,5 @@ if __name__ == "__main__":
           "allow_headers": ["*"]})
     ]
  
-    server = ls.LitServer(api, accelerator="auto", spec=ls.OpenAISpec())
+    server = ls.LitServer(api, accelerator="auto", middlewares=middlewares, spec=ls.OpenAISpec())
     server.run(port=args.port)
