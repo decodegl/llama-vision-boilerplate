@@ -1,7 +1,8 @@
 import litserve as ls
 import argparse
-
+from fastapi.middleware.cors import CORSMiddleware
 from model import Llama3
+
 
 class Llama3VisionAPI(ls.LitAPI):
     def setup(self, device):
@@ -23,5 +24,14 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=int, default=10111, help="Port number to run the server on")
     args = parser.parse_args()
     api = Llama3VisionAPI()
+    
+    middlewares = [
+        (CORSMiddleware, 
+         {"allow_origins": ["*"], 
+          "allow_credentials": True, 
+          "allow_methods": ["*"], 
+          "allow_headers": ["*"]})
+    ]
+ 
     server = ls.LitServer(api, accelerator="auto", spec=ls.OpenAISpec())
     server.run(port=args.port)
